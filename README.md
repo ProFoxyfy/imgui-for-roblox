@@ -45,7 +45,7 @@ So that we have a button, Why not add a label?
     local label = window.new("Label","My Cool Label!")
 ```
 
-Also why not make the button change the text of that label?
+Also why not make the button change the text of said label?
 ```lua
     local library = require(game.ReplicatedStorage.ImGui)
     local window = library.new(
