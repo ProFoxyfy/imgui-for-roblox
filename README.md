@@ -114,7 +114,7 @@ StartingPosition - The position of the window to start in, as a UDim2 (from top-
 
 ## Window
 Window is a special class, as it is a container and the main UIElement for everything.
-Can be created via Module.new() (see #Module.new())
+Can be created via Module.new() [see Module.new()](#modulenew)
 ### Functions
 ```lua
 function Window.new(ClassName, <ClassArguments>)
