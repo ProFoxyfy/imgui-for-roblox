@@ -7,6 +7,7 @@
 local module = {}
 local ui = Instance.new("ScreenGui",game.Players.LocalPlayer.PlayerGui)
 ui.Name = "ImGui"
+ui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ui.IgnoreGuiInset = true
 
 local globalDefaultTheme = {
@@ -50,7 +51,7 @@ function makeButton(text,callback,tc)
 	tT.Position = UDim2.new(0.5,0,0,0)
 	tT.Size = UDim2.new(1,-16 * scale,0,18 * scale)
 	tT.BackgroundTransparency = 0
-	tT.Font = Enum.Font.Gotham
+	tT.Font = currentTheme.Font
 	tT.TextSize = 12 * scale
 	tT.Text = text
 	tT.TextColor3 = currentTheme.ContentTextColor
@@ -60,15 +61,20 @@ function makeButton(text,callback,tc)
 end
 
 function makeWindow(text,size,sp)
-	local win = Instance.new("Frame")
+	local win = Instance.new("CanvasGroup")
+	addCorner(win)
+	win.Name = text
+	win.ClipsDescendants = true
 	win.BorderSizePixel = 0
-	local title = Instance.new("Frame",win)
+	local title = Instance.new("CanvasGroup",win)
+	title.Name = "TitleBar"
 	title.BorderSizePixel = 0
-	local content = Instance.new("Frame",win)
+	title.ClipsDescendants = true
+	local content = Instance.new("CanvasGroup",win)
+	content.Name = "Content"
+	content.ClipsDescendants = true
 	local uO = Instance.new("UIPadding")
 	local button = Instance.new("TextButton")
-	addCorner(win)
-	addCorner(title)
 	button.BackgroundTransparency = 1
 	button.Size = UDim2.fromOffset(18 * scale,18 * scale)
 	button.AnchorPoint = Vector2.new(1,0)
