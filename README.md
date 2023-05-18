@@ -70,9 +70,51 @@ Also why not make the button change the text of said label?
 
 # Documentation
 
+## Theme
+A table that can be passed into Module.new() [see Module.new()](#Module.new())
+```lua
+{
+	ContentColor = Color3.fromRGB(21, 22, 23),
+	TitleBarColor = Color3.fromRGB(41, 74,122),
+	ButtonColor = Color3.fromRGB(41, 74,122),
+	TitleBarTextColor = Color3.fromRGB(255,255,255),
+	ContentTextColor = Color3.fromRGB(255,255,255),
+	Font = Enum.Font.Gotham,
+	CornerRadius = 0
+}
+```
+### Properties
+ContentColor - Background color of Window
+
+TitleBarColor - Background color of the Title bar
+
+ButtonColor - Background color of All button instances in applied window
+
+TitleBarTextColor - The title bar's text color
+
+ContentTextColor - Overrides all contained UIElement's TextColor on applied Window
+
+Font - Overrides all contained UIElement's Font on applied Window
+
+CornerRadius - Controls the roundness of the window container and the title bar
+
+## Module.new()
+The root function of the whole UI Library.
+```lua
+function new(Text : string, Size : Vector2, Theme : ImGuiTheme, StartingPosition : UDim2)
+```
+### Arguments
+Text - Text displayed on the titlebar
+
+Size - Size of the window as a Vector2
+
+Theme - Controls the Theme of the Window [see Theme](#Theme)
+
+StartingPosition - The position of the window to start in, as a UDim2 (from top-left)
+
 ## Window
 Window is a special class, as it is a container and the main UIElement for everything.
-It is accessed as the root of the module.
+Can be created via Module.new() (see #Module.new())
 ### Functions
 ```lua
 function Window.new(ClassName, <ClassArguments>)
@@ -80,7 +122,7 @@ function Window.new(ClassName, <ClassArguments>)
 Creates a new UIElement by ClassName and its arguments.
 
 ## Button
-It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function
+It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function [see Window](#Window)
 ```lua
 function Window.new("Button", Text : string, Callback : function)
 ```
@@ -90,7 +132,7 @@ Text - Text thats displayed on the button
 Callback - Callback function that gets called once button is clicked (Must not contain brackets and no arguments!)
 
 ## Label
-It is also a very simple class with a single ClassArgument, can be created by passing the first argument of "Label" (as a string) into the Window.new() function
+It is also a very simple class with a single ClassArgument, can be created by passing the first argument of "Label" (as a string) into the Window.new() function [see Window](#Window)
 ```lua
 function Window.new("Label", Text : string)
 ```
