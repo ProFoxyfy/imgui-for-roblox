@@ -121,6 +121,11 @@ function Window.new(ClassName, <ClassArguments>)
 ```
 Creates a new UIElement by ClassName and its arguments.
 
+```lua
+function Window.destroy()
+```
+Destroys the window forever, and makes it out of scope.
+
 ## Button
 It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function [see Window](#window)
 ```lua
