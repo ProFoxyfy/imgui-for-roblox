@@ -71,7 +71,7 @@ Also why not make the button change the text of said label?
 # Documentation
 
 ## Theme
-A table that can be passed into Module.new() [see Module.new()](#Module.new())
+A table that can be passed into Module.new() [see Module.new()](#modulenew)
 ```lua
 {
 	ContentColor = Color3.fromRGB(21, 22, 23),
@@ -108,7 +108,7 @@ Text - Text displayed on the titlebar
 
 Size - Size of the window as a Vector2
 
-Theme - Controls the Theme of the Window [see Theme](#Theme)
+Theme - Controls the Theme of the Window [see Theme](#theme)
 
 StartingPosition - The position of the window to start in, as a UDim2 (from top-left)
 
@@ -122,7 +122,7 @@ function Window.new(ClassName, <ClassArguments>)
 Creates a new UIElement by ClassName and its arguments.
 
 ## Button
-It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function [see Window](#Window)
+It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function [see Window](#window)
 ```lua
 function Window.new("Button", Text : string, Callback : function)
 ```
@@ -132,7 +132,7 @@ Text - Text thats displayed on the button
 Callback - Callback function that gets called once button is clicked (Must not contain brackets and no arguments!)
 
 ## Label
-It is also a very simple class with a single ClassArgument, can be created by passing the first argument of "Label" (as a string) into the Window.new() function [see Window](#Window)
+It is also a very simple class with a single ClassArgument, can be created by passing the first argument of "Label" (as a string) into the Window.new() function [see Window](#window)
 ```lua
 function Window.new("Label", Text : string)
 ```
