@@ -7,6 +7,7 @@ ImGui style Luau UI library for all your quick debugging needs! (unfinished at t
 First, create a new ModuleScript instance inside ReplicatedStorage, lets call it "ImGui".
 Copy everything from ImGui.lua and put it in there.
 Also, create another ModuleScript called "Themes" and put it inside "ImGui".
+(or get the module [from here](https://web.roblox.com/library/13475147376/ImGui-Simple-UI-Library))
 Now in that one, we copy contents from Themes.lua (We can use this to make our windows with style!)
 
 This library is very simple at the moment.
