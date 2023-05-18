@@ -171,6 +171,9 @@ function makeWindow(text,size,sp)
 				}
 			end
 		end,
+		destroy = function()
+			win:Destroy()
+		end,
 	}
 end
 
