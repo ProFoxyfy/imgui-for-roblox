@@ -9,12 +9,23 @@ local ui = Instance.new("ScreenGui",game.Players.LocalPlayer.PlayerGui)
 ui.Name = "ImGui"
 ui.IgnoreGuiInset = true
 
+local globalDefaultTheme = {
+	ContentColor = Color3.fromRGB(21, 22, 23),
+	TitleBarColor = Color3.fromRGB(41, 74,122),
+	ButtonColor = Color3.fromRGB(41, 74,122),
+	TitleBarTextColor = Color3.fromRGB(255,255,255),
+	ContentTextColor = Color3.fromRGB(255,255,255),
+	Font = Enum.Font.Gotham,
+	CornerRadius = 0
+}
+
+local currentTheme = globalDefaultTheme
+
 local scale = 1.5
-local roundness = 6
 
 function addCorner(uiElement)
 	local c = Instance.new("UICorner",uiElement)
-	c.CornerRadius = UDim.new(0,roundness)
+	c.CornerRadius = UDim.new(0,currentTheme.CornerRadius)
 end
 
 function makeLabel(text)
@@ -23,16 +34,17 @@ function makeLabel(text)
 	tT.Position = UDim2.fromOffset(8 * scale,0)
 	tT.Size = UDim2.new(1,0,0,16 * scale)
 	tT.BackgroundTransparency = 1
-	tT.Font = Enum.Font.Gotham
+	tT.Font = currentTheme.Font
 	tT.TextSize = 12 * scale
 	tT.Text = text
-	tT.TextColor3 = Color3.new(1,1,1)
+	tT.TextColor3 = currentTheme.ContentTextColor
+	tT.Name = "UIElement"
 	return tT
 end
 
 function makeButton(text,callback,tc)
 	local tT = Instance.new("TextButton")
-	tT.BackgroundColor3 = Color3.fromRGB(41, 74,122)
+	tT.BackgroundColor3 = currentTheme.ButtonColor
 	tT.BorderSizePixel = 0
 	tT.AnchorPoint = Vector2.new(0.5,0)
 	tT.Position = UDim2.new(0.5,0,0,0)
@@ -41,12 +53,13 @@ function makeButton(text,callback,tc)
 	tT.Font = Enum.Font.Gotham
 	tT.TextSize = 12 * scale
 	tT.Text = text
-	tT.TextColor3 = Color3.new(1,1,1)
+	tT.TextColor3 = currentTheme.ContentTextColor
 	tT.MouseButton1Click:Connect(callback)
+	tT.Name = "UIElement"
 	return tT
 end
 
-function makeWindow(text,size,tc,cc,sp)
+function makeWindow(text,size,sp)
 	local win = Instance.new("Frame")
 	win.BorderSizePixel = 0
 	local title = Instance.new("Frame",win)
@@ -55,13 +68,14 @@ function makeWindow(text,size,tc,cc,sp)
 	local uO = Instance.new("UIPadding")
 	local button = Instance.new("TextButton")
 	addCorner(win)
+	addCorner(title)
 	button.BackgroundTransparency = 1
 	button.Size = UDim2.fromOffset(18 * scale,18 * scale)
 	button.AnchorPoint = Vector2.new(1,0)
 	button.Position = UDim2.fromScale(1,0)
 	button.Text = "X"
-	button.TextColor3 = Color3.new(1,1,1)
-	button.Font = Enum.Font.Code
+	button.TextColor3 = currentTheme.TitleBarTextColor
+	button.Font = currentTheme.Font
 	button.TextSize = 18 * scale
 	button.Parent = title
 	button.MouseButton1Click:Connect(function()
@@ -74,20 +88,21 @@ function makeWindow(text,size,tc,cc,sp)
 	content.BackgroundTransparency = 1
 	title.Size = UDim2.new(1,0,0,18 * scale)
 	local listLay = Instance.new("UIListLayout",content)
+	listLay.SortOrder = Enum.SortOrder.LayoutOrder
 	listLay.Padding = UDim.new(0,2)
 	local tT = Instance.new("TextLabel",title)
 	tT.TextXAlignment = Enum.TextXAlignment.Left
 	tT.Position = UDim2.fromOffset(8 * scale,0)
-	tT.Font = Enum.Font.Gotham
+	tT.Font = currentTheme.Font
 	tT.Size = UDim2.fromScale(1,1)
 	tT.BackgroundTransparency = 1
 	tT.TextSize = 12 * scale
 	tT.Text = text
-	tT.TextColor3 = Color3.new(1,1,1)
+	tT.TextColor3 = currentTheme.TitleBarTextColor
 	win.Size = UDim2.fromOffset(size.X * scale,size.Y * scale)
 	win.Position = sp
-	win.BackgroundColor3 = cc
-	title.BackgroundColor3 = tc
+	win.BackgroundColor3 = currentTheme.ContentColor
+	title.BackgroundColor3 = currentTheme.TitleBarColor
 	
 	local UserInputService = game:GetService("UserInputService")
 
@@ -159,8 +174,14 @@ function makeWindow(text,size,tc,cc,sp)
 	}
 end
 
-function module.new(Text,Size,TitleColor,ContentColor,StartingPosition)
-	local win = makeWindow(Text,Size,TitleColor,ContentColor,StartingPosition)
+function module.new(Text,Size,Theme,StartingPosition)
+	Theme = Theme or nil
+	if not Theme then
+		currentTheme = globalDefaultTheme
+	else
+		currentTheme = Theme
+	end
+	local win = makeWindow(Text,Size,StartingPosition)
 	return win
 end
 
