@@ -81,11 +81,18 @@ Creates a new UIElement by ClassName and its arguments.
 
 ## Button
 It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function
+```lua
+function Window.new("Button", Text : string, Callback : function)
+```
 ### Class-Specific Arguments
 Text - Text thats displayed on the button
+
 Callback - Callback function that gets called once button is clicked (Must not contain brackets and no arguments!)
 
 ## Label
 It is also a very simple class with a single ClassArgument, can be created by passing the first argument of "Label" (as a string) into the Window.new() function
+```lua
+function Window.new("Label", Text : string)
+```
 ### Class-Specific Arguments
 Text - Text displayed on the Label
