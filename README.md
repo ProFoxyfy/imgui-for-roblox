@@ -25,6 +25,20 @@ Themes are completely optional, you can set nil in place of it to use the defaul
 	)
 ```
 
+## Want a titlebar icon?
+Its very simple.
+Since Window instances contain a property pointing back to the CanvasGroup it was created as, this is a piece of cake!
+You do need to offset the titlebar text however.
+```lua
+	local img = Instance.new("ImageLabel")
+	local image = "rbxassetid://8382597378"
+	img.Image = image
+	img.BackgroundTransparency = 1
+	img.Size = UDim2.fromOffset(window.WindowInstance.TitleBar.Size.Y.Offset,window.WindowInstance.TitleBar.Size.Y.Offset)
+	img.Parent = window.WindowInstance.TitleBar
+	window.WindowInstance.TitleBar.TBText.Position = UDim2.new(0,window.WindowInstance.TitleBar.Size.Y.Offset + 8,0,0)
+```
+
 ## Making some Elements
 
 Lets make some UI Elements now that we have the Window!
