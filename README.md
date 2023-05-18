@@ -19,6 +19,7 @@ Themes are completely optional, you can set nil in place of it to use the defaul
 	local themes = require(game.ReplicatedStorage.ImGui.Themes)
 	local window = library.new(
 		"My Cool Window!", -- Window title
+		Vector2.New(200,200), -- Window size
 		nil, -- Can be nil or one of the themes (e.g. themes.Dracula)
 		UDim2.fromScale(0.1,0.1) -- Starting position
 	)
@@ -56,6 +57,7 @@ Also why not make the button change the text of said label?
 	local themes = require(game.ReplicatedStorage.ImGui.Themes)
 	local window = library.new(
 		"My Cool Window!", -- Window title
+		Vector2.New(200,200), -- Window size
 		nil, -- Can be nil or one of the themes (e.g. themes.Dracula)
 		UDim2.fromScale(0.1,0.1) -- Starting position
 	)
