@@ -97,6 +97,7 @@ function makeWindow(text,size,sp)
 	listLay.SortOrder = Enum.SortOrder.LayoutOrder
 	listLay.Padding = UDim.new(0,2)
 	local tT = Instance.new("TextLabel",title)
+	tT.Name = "TBText"
 	tT.TextXAlignment = Enum.TextXAlignment.Left
 	tT.Position = UDim2.fromOffset(8 * scale,0)
 	tT.Font = currentTheme.Font
