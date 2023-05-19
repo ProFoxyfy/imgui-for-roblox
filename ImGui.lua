@@ -90,7 +90,7 @@ function makeWindow(text,size,sp)
 	uO.Parent = content
 	uO.PaddingTop = UDim.new(0,8 * scale)
 	content.Size = UDim2.new(1,0,1,-18 * scale)
-	content.Position = UDim2.fromOffset(8,18 * scale)
+	content.Position = UDim2.fromOffset(12,10 * scale)
 	content.BackgroundTransparency = 1
 	title.Size = UDim2.new(1,0,0,18 * scale)
 	local listLay = Instance.new("UIListLayout",content)
