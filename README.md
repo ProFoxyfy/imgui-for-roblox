@@ -7,6 +7,7 @@ ImGui style Luau UI library for all your quick debugging needs! (unfinished at t
 First, create a new ModuleScript instance inside ReplicatedStorage, lets call it "ImGui".
 Copy everything from ImGui.lua and put it in there.
 Also, create another ModuleScript called "Themes" and put it inside "ImGui".
+(or get the module [from here](https://www.roblox.com/library/13475147376/ImGui-Simple-UI-Library))
 Now in that one, we copy contents from Themes.lua (We can use this to make our windows with style!)
 
 This library is very simple at the moment.
@@ -18,9 +19,24 @@ Themes are completely optional, you can set nil in place of it to use the defaul
 	local themes = require(game.ReplicatedStorage.ImGui.Themes)
 	local window = library.new(
 		"My Cool Window!", -- Window title
+		Vector2.New(200,200), -- Window size
 		nil, -- Can be nil or one of the themes (e.g. themes.Dracula)
 		UDim2.fromScale(0.1,0.1) -- Starting position
 	)
+```
+
+## Want a titlebar icon?
+Its very simple.
+Since Window instances contain a property pointing back to the CanvasGroup it was created as, this is a piece of cake!
+You do need to offset the titlebar text however.
+```lua
+	local img = Instance.new("ImageLabel")
+	local image = "rbxassetid://8382597378"
+	img.Image = image
+	img.BackgroundTransparency = 1
+	img.Size = UDim2.fromOffset(window.WindowInstance.TitleBar.Size.Y.Offset,window.WindowInstance.TitleBar.Size.Y.Offset)
+	img.Parent = window.WindowInstance.TitleBar
+	window.WindowInstance.TitleBar.TBText.Position = UDim2.new(0,window.WindowInstance.TitleBar.Size.Y.Offset + 8,0,0)
 ```
 
 ## Making some Elements
@@ -55,6 +71,7 @@ Also why not make the button change the text of said label?
 	local themes = require(game.ReplicatedStorage.ImGui.Themes)
 	local window = library.new(
 		"My Cool Window!", -- Window title
+		Vector2.New(200,200), -- Window size
 		nil, -- Can be nil or one of the themes (e.g. themes.Dracula)
 		UDim2.fromScale(0.1,0.1) -- Starting position
 	)
@@ -120,6 +137,11 @@ Can be created via Module.new() [see Module.new()](#modulenew)
 function Window.new(ClassName, <ClassArguments>)
 ```
 Creates a new UIElement by ClassName and its arguments.
+
+```lua
+function Window.destroy()
+```
+Destroys the window forever, and makes it out of scope.
 
 ## Button
 It is a very simple class that can be created by passing the first argument of "Button" (as a string) into the Window.new() function [see Window](#window)
