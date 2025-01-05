@@ -1,3 +1,9 @@
+# License
+**WARNING**: This repository and its code is licensed under the Mozilla Public License, version 2.0. You can obtain a copy [here](https://www.mozilla.org/en-US/MPL/2.0/), or open LICENSE in a text editor. Any infringements will void your rights mentioned in the license.
+**IMPORTANT**: **This source code form is Incompatible With Secondary Licenses. While the MPL 2.0 license only refers to GNU licenses, this restriction applies to all licenses other than the license included with this repository.**
+You are required to license any code, whether unmodified or modified, from this repository under the same license, as you received it.
+
+(Note: The reason secondary licenses are not permitted, is because of certain problematic licenses that harm both the open-source community and my project.)
 
 # imgui-for-roblox
 ImGui style Luau UI library for all your quick debugging needs! (unfinished at the moment)
